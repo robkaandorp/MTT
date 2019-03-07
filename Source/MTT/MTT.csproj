@@ -18,6 +18,7 @@
     <Authors>Cody Schrank</Authors>
     <Description>Converts C# DTOs to Typescript Interfaces using MSBUILD Tasks.</Description>
     <PackageProjectUrl>https://github.com/CodySchrank/MTT</PackageProjectUrl>
+    <Version>0.5.6-develop</Version>
   </PropertyGroup>
 
   <ItemGroup>
