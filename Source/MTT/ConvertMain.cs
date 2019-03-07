@@ -35,6 +35,8 @@ namespace MSBuildTasks
 
         private string LocalConvertDir { get; set; }
 
+        public bool EnumsAsStrings { get; set; } = false;
+
         public ConvertMain()
         {
             Models = new List<ModelFile>();
@@ -366,7 +368,7 @@ namespace MSBuildTasks
                             {  //not an empty obj
                                 var str =
                                     ToCamelCase(obj.Name)
-                                    + (obj.IsImplicit ? "" : (" = " + obj.Value))
+                                    + (obj.IsImplicit ? "" : (" = " + (EnumsAsStrings ? "\"" + ToCamelCase(obj.Name) + "\"" : obj.Value.ToString())))
                                     + ",";
 
                                 f.WriteLine("    " + str);
