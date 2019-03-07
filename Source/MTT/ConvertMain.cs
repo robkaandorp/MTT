@@ -35,7 +35,20 @@ namespace MSBuildTasks
 
         private string LocalConvertDir { get; set; }
 
-        public bool EnumsAsStrings { get; set; } = false;
+        public string EnumsAsStrings { get; set; } = "false";
+
+        private bool LocalEnumsAsStrings
+        {
+            get
+            {
+                if (this.EnumsAsStrings == "true")
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
 
         public ConvertMain()
         {
@@ -368,7 +381,7 @@ namespace MSBuildTasks
                             {  //not an empty obj
                                 string str;
 
-                                if (this.EnumsAsStrings)
+                                if (this.LocalEnumsAsStrings)
                                 {
                                     str = $"{ this.ToCamelCase(obj.Name) } = \"{ this.ToCamelCase(obj.Name) }\",";
                                 }
