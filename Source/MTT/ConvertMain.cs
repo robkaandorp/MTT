@@ -366,10 +366,18 @@ namespace MSBuildTasks
                         {
                             if (!String.IsNullOrEmpty(obj.Name))
                             {  //not an empty obj
-                                var str =
-                                    ToCamelCase(obj.Name)
-                                    + (obj.IsImplicit ? "" : (" = " + (EnumsAsStrings ? "\"" + ToCamelCase(obj.Name) + "\"" : obj.Value.ToString())))
-                                    + ",";
+                                string str;
+
+                                if (this.EnumsAsStrings)
+                                {
+                                    str = $"{ this.ToCamelCase(obj.Name) } = \"{ this.ToCamelCase(obj.Name) }\",";
+                                }
+                                else
+                                {
+                                    str = ToCamelCase(obj.Name)
+                                        + (obj.IsImplicit ? "" : (" = " + obj.Value))
+                                        + ",";
+                                }
 
                                 f.WriteLine("    " + str);
                             }
